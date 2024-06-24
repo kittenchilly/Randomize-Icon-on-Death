@@ -1,5 +1,5 @@
 {
-	"geode": "3.0.0",
+	"geode": "3.1.0",
 	"gd": {
 		"win": "2.206",
 		"android": "2.206",
@@ -8,8 +8,16 @@
 	},
 	"id": "kittenchilly.randomize_icon_on_death",
 	"name": "Randomize Icon on Death",
-	"version": "v1.0.4",
+	"version": "v1.1.0",
 	"developer": "kittenchilly",
 	"description": "Randomizes your icons and colors everytime you die",
-	"repository": "https://github.com/kittenchilly/Randomize-Icon-on-Death"
+	"repository": "https://github.com/kittenchilly/Randomize-Icon-on-Death",
+    "settings": {
+        "random-p2": {
+            "name": "Random P2",
+            "description": "If P2/Dual should also be a completely random icon, rather than P1's icon with colors inverted",
+            "type": "bool",
+            "default": false
+        }
+    }
 }
