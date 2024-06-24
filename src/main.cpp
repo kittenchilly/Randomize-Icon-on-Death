@@ -1,4 +1,5 @@
 #include <Geode/Geode.hpp>
+#include <Geode/modify/PlayLayer.hpp>
 #include <Geode/modify/PlayerObject.hpp>
 #include <random>
 
@@ -91,10 +92,11 @@ void randomize(UnlockType unlockType) {
         num = unlocked[2][randomNumber(0, unlocked[2].size() - 1)];
         gameManager->setPlayerColor2(num);
 
-        if (gameManager->getPlayerGlow())
+        //glow
+        if (gameManager->m_playerGlow)
         {
             num = unlocked[2][randomNumber(0, unlocked[2].size() - 1)];
-            gameManager->setPlayerColor3(num);
+            gameManager->m_playerGlowColor = num;
         }
         break;
     case UnlockType::Ship:
@@ -144,7 +146,7 @@ void randomize(UnlockType unlockType) {
     }
 }
 
-void updateFrames(PlayerObject *player)
+void updateFrames(PlayerObject* player)
 {
     auto gameManager = GameManager::sharedState();
     if (player->m_isShip)
@@ -165,56 +167,62 @@ void updateFrames(PlayerObject *player)
     }
     else if (player->m_isDart)
         player->updatePlayerDartFrame(gameManager->getPlayerDart());
-    else if (player->m_isRobot)
-        player->updatePlayerRobotFrame(gameManager->getPlayerRobot());
-    else if (player->m_isSpider)
-        player->updatePlayerSpiderFrame(gameManager->getPlayerSpider());
     else if (player->m_isSwing)
         player->updatePlayerSwingFrame(gameManager->getPlayerSwing());
     else
         player->updatePlayerFrame(gameManager->getPlayerFrame());
 
-    if (gameManager->getPlayerGlow())
-        player->enableCustomGlowColor(gameManager->colorForIdx(gameManager->getPlayerGlowColor()));
+    player->updatePlayerRobotFrame(gameManager->getPlayerRobot());
+    player->updatePlayerSpiderFrame(gameManager->getPlayerSpider());
 }
 
-class $modify(PlayerObject) {
+class $modify(PlayLayer) {
 
-    void resetObject() {
-        PlayerObject::resetObject();
-        if (!PlayLayer::get()) return;
-
+    void resetLevel() {
+        PlayLayer::resetLevel();
         auto gameManager = GameManager::sharedState();
 
-        if (m_gameLayer->m_player1 == this)
-        {
-            setupUnlocked();
+        setupUnlocked();
 
-            randomize(UnlockType::Cube);
-            randomize(UnlockType::Col1);
-            randomize(UnlockType::Col2);
-            randomize(UnlockType::Ship);
-            randomize(UnlockType::Ball);
-            randomize(UnlockType::Bird);
-            randomize(UnlockType::Dart);
-            randomize(UnlockType::Robot);
-            randomize(UnlockType::Spider);
-            randomize(UnlockType::Streak);
-            randomize(UnlockType::Death);
-            randomize(UnlockType::Swing);
-            randomize(UnlockType::Jetpack);
-            randomize(UnlockType::ShipFire);
+        randomize(UnlockType::Cube);
+        randomize(UnlockType::Col1);
+        randomize(UnlockType::Col2);
+        randomize(UnlockType::Ship);
+        randomize(UnlockType::Ball);
+        randomize(UnlockType::Bird);
+        randomize(UnlockType::Dart);
+        randomize(UnlockType::Robot);
+        randomize(UnlockType::Spider);
+        randomize(UnlockType::Streak);
+        randomize(UnlockType::Death);
+        randomize(UnlockType::Swing);
+        randomize(UnlockType::Jetpack);
+        randomize(UnlockType::ShipFire);
 
-            updateFrames(m_gameLayer->m_player1);
-            PlayerObject::setColor(gameManager->colorForIdx(gameManager->getPlayerColor()));
-            PlayerObject::setSecondColor(gameManager->colorForIdx(gameManager->getPlayerColor2()));
-        }
 
-        if (m_gameLayer->m_player2 == this)
-        {
-            updateFrames(m_gameLayer->m_player2);
-            PlayerObject::setColor(gameManager->colorForIdx(gameManager->getPlayerColor2()));
-            PlayerObject::setSecondColor(gameManager->colorForIdx(gameManager->getPlayerColor()));
-        }
+        updateFrames(m_player1);
+        updateFrames(m_player2);
+
+        int color1 = gameManager->getPlayerColor();
+        int color2 = gameManager->getPlayerColor2();
+
+        m_player1->setColor(gameManager->colorForIdx(color1));
+        m_player2->setColor(gameManager->colorForIdx(color2));
+
+        m_player1->setSecondColor(gameManager->colorForIdx(color2));
+        m_player2->setSecondColor(gameManager->colorForIdx(color1));
+
+        m_player1->m_glowColor = gameManager->colorForIdx(gameManager->m_playerGlowColor);
+        m_player2->m_glowColor = gameManager->colorForIdx(color1);
+        m_player1->updateGlowColor();
+        m_player2->updateGlowColor();
+        m_player1->updatePlayerGlow();
+        m_player2->updatePlayerGlow();
+
+        m_player1->m_regularTrail->reset();
+        m_player2->m_regularTrail->reset();
+
+        m_player1->m_waveTrail->reset();
+        m_player2->m_waveTrail->reset();
     }
 };
