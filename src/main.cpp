@@ -118,6 +118,7 @@ void randomize(UnlockType unlockType) {
         break;
     case UnlockType::Death:
         gameManager->setPlayerDeathEffect(num);
+        gameManager->loadDeathEffect(num);
         break;
     case UnlockType::Swing:
         gameManager->setPlayerSwing(num);
@@ -185,9 +186,6 @@ class $modify(PlayLayer) {
         randomize(UnlockType::Jetpack);
         randomize(UnlockType::ShipFire);
 
-        m_player1->updatePlayerArt();
-        m_player2->updatePlayerArt();
-
         updateFrames(m_player1);
         updateFrames(m_player2);
 
@@ -217,6 +215,7 @@ class $modify(PlayLayer) {
         m_player1->m_waveTrail->updateDisplayedColor(gameManager->colorForIdx(color1));
         m_player2->m_waveTrail->updateDisplayedColor(gameManager->colorForIdx(color2));
 
+
         if (Mod::get()->getSettingValue<bool>("random-p2"))
         {
             setupUnlocked();
@@ -231,13 +230,11 @@ class $modify(PlayLayer) {
             randomize(UnlockType::Robot);
             randomize(UnlockType::Spider);
             randomize(UnlockType::Streak);
-            randomize(UnlockType::Death);
-            randomize(UnlockType::GJItem);
+            //randomize(UnlockType::Death);
+            //randomize(UnlockType::GJItem);
             randomize(UnlockType::Swing);
             randomize(UnlockType::Jetpack);
             randomize(UnlockType::ShipFire);
-
-            m_player2->updatePlayerArt();
 
             updateFrames(m_player2);
 
