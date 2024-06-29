@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 #include <Geode/modify/PlayLayer.hpp>
+#include <Geode/modify/GJBaseGameLayer.hpp>
 #include <Geode/modify/PlayerObject.hpp>
 #include <random>
 
@@ -165,7 +166,6 @@ void updateFrames(PlayerObject* player)
 class $modify(PlayLayer) {
 
     void resetLevel() {
-        PlayLayer::resetLevel();
         auto gameManager = GameManager::sharedState();
 
         setupUnlocked();
@@ -202,19 +202,9 @@ class $modify(PlayLayer) {
         m_player2->m_glowColor = gameManager->colorForIdx(color1);
         m_player1->updateGlowColor();
         m_player2->updateGlowColor();
-        m_player1->updatePlayerGlow();
-        m_player2->updatePlayerGlow();
 
-        m_player1->m_regularTrail->setColor(gameManager->colorForIdx(color1));
-        m_player2->m_regularTrail->setColor(gameManager->colorForIdx(color2));
-        m_player1->m_regularTrail->updateDisplayedColor(gameManager->colorForIdx(color1));
-        m_player2->m_regularTrail->updateDisplayedColor(gameManager->colorForIdx(color2));
-
-        m_player1->m_waveTrail->setColor(gameManager->colorForIdx(color1));
-        m_player2->m_waveTrail->setColor(gameManager->colorForIdx(color2));
-        m_player1->m_waveTrail->updateDisplayedColor(gameManager->colorForIdx(color1));
-        m_player2->m_waveTrail->updateDisplayedColor(gameManager->colorForIdx(color2));
-
+        m_player1->addAllParticles();
+        m_player2->addAllParticles();
 
         if (Mod::get()->getSettingValue<bool>("random-p2"))
         {
@@ -243,16 +233,11 @@ class $modify(PlayLayer) {
 
             m_player2->setColor(gameManager->colorForIdx(color1));
             m_player2->setSecondColor(gameManager->colorForIdx(color2));
-
             m_player2->m_glowColor = gameManager->colorForIdx(gameManager->m_playerGlowColor);
             m_player2->updateGlowColor();
-            m_player2->updatePlayerGlow();
-
-            m_player2->m_regularTrail->setColor(gameManager->colorForIdx(color1));
-            m_player2->m_regularTrail->updateDisplayedColor(gameManager->colorForIdx(color1));
-
-            m_player2->m_waveTrail->setColor(gameManager->colorForIdx(color1));
-            m_player2->m_waveTrail->updateDisplayedColor(gameManager->colorForIdx(color1));
+            m_player2->addAllParticles();
         }
+
+        PlayLayer::resetLevel();
     }
 };
