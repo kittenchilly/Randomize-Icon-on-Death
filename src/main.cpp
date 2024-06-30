@@ -203,8 +203,8 @@ class $modify(PlayLayer) {
         m_player1->updateGlowColor();
         m_player2->updateGlowColor();
 
-        m_player1->addAllParticles();
-        m_player2->addAllParticles();
+        //m_player1->addAllParticles();
+        //m_player2->addAllParticles();
 
         if (Mod::get()->getSettingValue<bool>("random-p2"))
         {
@@ -235,7 +235,7 @@ class $modify(PlayLayer) {
             m_player2->setSecondColor(gameManager->colorForIdx(color2));
             m_player2->m_glowColor = gameManager->colorForIdx(gameManager->m_playerGlowColor);
             m_player2->updateGlowColor();
-            m_player2->addAllParticles();
+            // m_player2->addAllParticles();
         }
 
         PlayLayer::resetLevel();
