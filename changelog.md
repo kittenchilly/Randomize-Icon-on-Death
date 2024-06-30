@@ -1,3 +1,8 @@
+# v1.1.2
+- More accurate particles and trails
+- More accurate glow randomization
+- Changed a bit where the randomization occurs which is, say it with me, more accurate
+
 # v1.1.1
 - Add macOS support
 - Fixed crashes related to random death effects
