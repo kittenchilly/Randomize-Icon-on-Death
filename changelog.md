@@ -1,3 +1,6 @@
+# v1.2.1
+- Fix death effect crashing regression
+
 # v1.2.0
 - Icon randomization is now done through Icon Randomizer API by hiimjustin000 (new dependency)
 - The optional p2/dual randomization is now done through and requires Seperate Dual Icons by Weebify, instead of being a setting.

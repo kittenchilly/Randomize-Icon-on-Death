@@ -32,6 +32,8 @@ void updateFrames(PlayerObject* player)
 
     player->updatePlayerRobotFrame(gameManager->getPlayerRobot());
     player->updatePlayerSpiderFrame(gameManager->getPlayerSpider());
+
+    gameManager->loadDeathEffect(gameManager->getPlayerDeathEffect());
 }
 
 class $modify(PlayLayer) {
