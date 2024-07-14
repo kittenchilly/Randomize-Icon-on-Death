@@ -53,6 +53,7 @@ class $modify(PlayLayer) {
 
         int color1 = gameManager->getPlayerColor();
         int color2 = gameManager->getPlayerColor2();
+        int glowColor = gameManager->getPlayerGlowColor();
 
         m_player1->setColor(gameManager->colorForIdx(color1));
         m_player2->setColor(gameManager->colorForIdx(color2));
@@ -60,8 +61,16 @@ class $modify(PlayLayer) {
         m_player1->setSecondColor(gameManager->colorForIdx(color2));
         m_player2->setSecondColor(gameManager->colorForIdx(color1));
 
-        m_player1->m_glowColor = gameManager->colorForIdx(gameManager->m_playerGlowColor);
-        m_player2->m_glowColor = gameManager->colorForIdx(color1);
+        if (gameManager->getPlayerGlow())
+        {
+            m_player1->enableCustomGlowColor(gameManager->colorForIdx(glowColor));
+            m_player2->enableCustomGlowColor(gameManager->colorForIdx(color1));
+        }
+        else
+        {
+            m_player1->disableCustomGlowColor();
+            m_player2->disableCustomGlowColor();
+        }
         m_player1->updateGlowColor();
         m_player2->updateGlowColor();
 
@@ -78,10 +87,14 @@ class $modify(PlayLayer) {
 
             color1 = gameManager->getPlayerColor();
             color2 = gameManager->getPlayerColor2();
+            glowColor = gameManager->getPlayerGlowColor();
             updateFrames(m_player2);
             m_player2->setColor(gameManager->colorForIdx(color1));
             m_player2->setSecondColor(gameManager->colorForIdx(color2));
-            m_player2->m_glowColor = gameManager->colorForIdx(gameManager->m_playerGlowColor);
+            if (gameManager->getPlayerGlow())
+                m_player2->enableCustomGlowColor(gameManager->colorForIdx(glowColor));
+            else
+                m_player2->disableCustomGlowColor();
             m_player2->updateGlowColor();
             // m_player2->addAllParticles();
         }

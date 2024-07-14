@@ -1,3 +1,6 @@
+# v1.2.2
+- Fix glow toggle randomization
+
 # v1.2.1
 - Fix death effect crashing regression
 
