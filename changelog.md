@@ -1,3 +1,6 @@
+# v1.2.3
+- Updated to Geode v3.3.0
+
 # v1.2.2
 - Fix glow toggle randomization
 
