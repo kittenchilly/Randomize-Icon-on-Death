@@ -1,3 +1,6 @@
+# v1.2.5
+- Add iOS support
+
 # v1.2.4
 - Updated to 2.2074 and Geode v4.0.0
 

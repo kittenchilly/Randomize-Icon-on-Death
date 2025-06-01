@@ -1,5 +1,5 @@
 {
-    "geode": "4.0.0-beta.1",
+    "geode": "4.5.0",
     "gd": {
         "win": "2.2074",
         "android": "2.2074",
@@ -8,19 +8,15 @@
     },
     "id": "kittenchilly.randomize_icon_on_death",
     "name": "Randomize Icon on Death",
-    "version": "v1.2.4",
+    "version": "v1.2.5",
     "developer": "kittenchilly",
     "description": "Randomizes your icon everytime you die",
     "links": {
         "source": "https://github.com/kittenchilly/Randomize-Icon-on-Death"
     },
-    "dependencies": [
-        {
-            "id": "hiimjustin000.icon_randomizer_api",
-            "version": ">=v2.0.0",
-            "importance": "required"
-        }
-    ],
+    "dependencies": {
+        "hiimjustin000.icon_randomizer_api": ">=v2.2.0"
+    },
     "tags": [
         "gameplay",
         "customization",

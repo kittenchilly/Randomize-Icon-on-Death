@@ -9,4 +9,4 @@ For people that really can't decide what to use.
 - GLOBED: Player indicator in progress bar doesn't update when icon is randomized in a level
 
 # Credits
-hiimjustin000 - Icon Randomizer API and initial inspiration, check out their Better Icon Randomizer mod!
+hiimjasmine000 - Icon Randomizer API and initial inspiration, check out her Better Icon Randomizer mod!
