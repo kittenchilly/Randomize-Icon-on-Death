@@ -1,3 +1,7 @@
+# v1.3.0
+- You can now toggle which specific gamemode icons, colors, and effects you want to randomize on death in the mod's settings.
+  - For example, you can choose to randomize just colors, randomize everything except death effect, etc.
+
 # v1.2.6
 - Updated to 2.2081 and Geode v5.0.0
 

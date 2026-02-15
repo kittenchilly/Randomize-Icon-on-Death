@@ -1,5 +1,5 @@
 {
-    "geode": "5.0.0-beta.1",
+    "geode": "5.0.0-beta.2",
     "gd": {
         "win": "2.2081",
         "android": "2.2081",
@@ -8,7 +8,7 @@
     },
     "id": "kittenchilly.randomize_icon_on_death",
     "name": "Randomize Icon on Death",
-    "version": "v1.2.6",
+    "version": "v1.3.0",
     "developer": "kittenchilly",
     "description": "Randomizes your icon everytime you die",
     "links": {
@@ -21,5 +21,111 @@
         "gameplay",
         "customization",
         "offline"
-    ]
+    ],
+    "settings": {
+        "icons": {
+            "type": "title",
+            "name": "Icons"
+        },
+        "cube": {
+            "type": "bool",
+            "name": "Cube",
+            "default": true
+        },
+        "ship": {
+            "type": "bool",
+            "name": "Ship",
+            "default": true
+        },
+        "ball": {
+            "type": "bool",
+            "name": "Ball",
+            "default": true
+        },
+        "ufo": {
+            "type": "bool",
+            "name": "UFO",
+            "default": true
+        },
+        "wave": {
+            "type": "bool",
+            "name": "Wave",
+            "default": true
+        },
+        "robot": {
+            "type": "bool",
+            "name": "Robot",
+            "default": true
+        },
+        "spider": {
+            "type": "bool",
+            "name": "Spider",
+            "default": true
+        },
+        "swing": {
+            "type": "bool",
+            "name": "Swing",
+            "default": true
+        },
+        "jetpack": {
+            "type": "bool",
+            "name": "Jetpack",
+            "default": true
+        },
+        "special": {
+            "type": "title",
+            "name": "Special"
+        },
+        "deathEffect": {
+            "type": "bool",
+            "name": "Death Effect",
+            "default": true
+        },
+        "trail": {
+            "type": "bool",
+            "name": "Trail",
+            "default": true
+        },
+        "shipFire": {
+            "type": "bool",
+            "name": "Ship Fire",
+            "default": true
+        },
+        "animation": {
+            "type": "bool",
+            "name": "Animation",
+            "default": true
+        },
+        "explode": {
+            "type": "bool",
+            "name": "Explode Toggle",
+            "description": "This randomizes whether the icon explode effect is on or off after every death.",
+            "default": true
+        },
+        "colors": {
+            "type": "title",
+            "name": "Colors"
+        },
+        "color1": {
+            "type": "bool",
+            "name": "Color 1",
+            "default": true
+        },
+        "color2": {
+            "type": "bool",
+            "name": "Color 2",
+            "default": true
+        },
+        "glowColor": {
+            "type": "bool",
+            "name": "Glow Color",
+            "default": true
+        },
+        "glow": {
+            "type": "bool",
+            "name": "Glow Toggle",
+            "description": "This randomizes whether the glow is on or off after every death.",
+            "default": true
+        }
+    }
 }
