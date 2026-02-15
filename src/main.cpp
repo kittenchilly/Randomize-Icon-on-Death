@@ -44,9 +44,9 @@ class $modify(PlayLayer) {
 
         IconRandomizer::init();
 
-        IconRandomizer::randomizeAll(ICON_RANDOMIZER_API_ALL_ICONS);
-        IconRandomizer::randomizeAll(ICON_RANDOMIZER_API_ALL_SPECIAL);
-        IconRandomizer::randomizeAll(ICON_RANDOMIZER_API_ALL_COLORS);
+        IconRandomizer::randomizeAll(RandomizeAllType::Icons);
+        IconRandomizer::randomizeAll(RandomizeAllType::Special);
+        IconRandomizer::randomizeAll(RandomizeAllType::Colors);
 
         updateFrames(m_player1);
         updateFrames(m_player2);
@@ -81,9 +81,9 @@ class $modify(PlayLayer) {
         {
             IconRandomizer::init();
 
-            IconRandomizer::randomizeAll(ICON_RANDOMIZER_API_ALL_ICONS, true);
-            IconRandomizer::randomizeAll(ICON_RANDOMIZER_API_ALL_SPECIAL, true);
-            IconRandomizer::randomizeAll(ICON_RANDOMIZER_API_ALL_COLORS, true);
+            IconRandomizer::randomizeAll(RandomizeAllType::Icons, true);
+            IconRandomizer::randomizeAll(RandomizeAllType::Special, true);
+            IconRandomizer::randomizeAll(RandomizeAllType::Colors, true);
 
             color1 = gameManager->getPlayerColor();
             color2 = gameManager->getPlayerColor2();
