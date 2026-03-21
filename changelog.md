@@ -1,3 +1,6 @@
+# v1.3.1
+- Update to Geode v5.3.0 (Fixes a bug related to Spider 30)
+
 # v1.3.0
 - You can now toggle which specific gamemode icons, colors, and effects you want to randomize on death in the mod's settings.
   - For example, you can choose to randomize just colors, randomize everything except death effect, etc.
