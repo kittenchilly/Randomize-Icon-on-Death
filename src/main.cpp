@@ -154,14 +154,14 @@ class $modify(PlayLayer) {
                         }
                         
                         // of course the specific player color actions don't actually use player color
-                        if (auto action = effectManager->getColorAction(1005))
+                        if (action == effectManager->getColorAction(1005))
                         {
                             action->m_duration = 0;
                             action->m_fromColor = m_player1->m_playerColor1;
                             action->m_blending = true;
                         }
 
-                        if (auto action = effectManager->getColorAction(1006))
+                        if (action == effectManager->getColorAction(1006))
                         {
                             action->m_duration = 0;
                             action->m_fromColor = m_player1->m_playerColor2;
