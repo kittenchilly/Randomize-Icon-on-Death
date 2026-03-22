@@ -4,6 +4,46 @@
 
 using namespace geode::prelude;
 
+void randomize(bool dual = false)
+{
+    if (Mod::get()->getSettingValue<bool>("cube"))
+        IconRandomizer::randomize(RandomizeType::Cube, dual);
+    if (Mod::get()->getSettingValue<bool>("ship"))
+        IconRandomizer::randomize(RandomizeType::Ship, dual);
+    if (Mod::get()->getSettingValue<bool>("ball"))
+        IconRandomizer::randomize(RandomizeType::Ball, dual);
+    if (Mod::get()->getSettingValue<bool>("ufo"))
+        IconRandomizer::randomize(RandomizeType::Ufo, dual);
+    if (Mod::get()->getSettingValue<bool>("wave"))
+        IconRandomizer::randomize(RandomizeType::Wave, dual);
+    if (Mod::get()->getSettingValue<bool>("robot"))
+        IconRandomizer::randomize(RandomizeType::Robot, dual);
+    if (Mod::get()->getSettingValue<bool>("spider"))
+        IconRandomizer::randomize(RandomizeType::Spider, dual);
+    if (Mod::get()->getSettingValue<bool>("swing"))
+        IconRandomizer::randomize(RandomizeType::Swing, dual);
+    if (Mod::get()->getSettingValue<bool>("jetpack"))
+        IconRandomizer::randomize(RandomizeType::Jetpack, dual);
+    if (Mod::get()->getSettingValue<bool>("deathEffect"))
+        IconRandomizer::randomize(RandomizeType::DeathEffect, dual);
+    if (Mod::get()->getSettingValue<bool>("trail"))
+        IconRandomizer::randomize(RandomizeType::Trail, dual);
+    if (Mod::get()->getSettingValue<bool>("shipFire"))
+        IconRandomizer::randomize(RandomizeType::ShipFire, dual);
+    if (Mod::get()->getSettingValue<bool>("animation"))
+        IconRandomizer::randomize(RandomizeType::Animation, dual);
+    if (Mod::get()->getSettingValue<bool>("explode"))
+        IconRandomizer::randomize(RandomizeType::Explode, dual);
+    if (Mod::get()->getSettingValue<bool>("color1"))
+        IconRandomizer::randomize(RandomizeType::Color1, dual);
+    if (Mod::get()->getSettingValue<bool>("color2"))
+        IconRandomizer::randomize(RandomizeType::Color2, dual);
+    if (Mod::get()->getSettingValue<bool>("glowColor"))
+        IconRandomizer::randomize(RandomizeType::GlowColor, dual);
+    if (Mod::get()->getSettingValue<bool>("glow"))
+        IconRandomizer::randomize(RandomizeType::Glow, dual);
+}
+
 void updateFrames(PlayerObject* player)
 {
     auto gameManager = GameManager::sharedState();
@@ -40,82 +80,12 @@ class $modify(PlayLayer) {
 
     void resetLevel() {
         auto gameManager = GameManager::sharedState();
+        auto effectManager = PlayLayer::m_levelSettings->m_effectManager;
         auto separateDualIconsLoaded = Loader::get()->getLoadedMod("weebify.separate_dual_icons");
 
         IconRandomizer::init();
 
-        auto settingCube = Mod::get()->getSettingValue<bool>("cube");
-        if (settingCube)
-            IconRandomizer::randomize(RandomizeType::Cube);
-
-        auto settingShip = Mod::get()->getSettingValue<bool>("ship");
-        if (settingShip)
-            IconRandomizer::randomize(RandomizeType::Ship);
-
-        auto settingBall = Mod::get()->getSettingValue<bool>("ball");
-        if (settingBall)
-            IconRandomizer::randomize(RandomizeType::Ball);
-
-        auto settingUfo = Mod::get()->getSettingValue<bool>("ufo");
-        if (settingUfo)
-            IconRandomizer::randomize(RandomizeType::Ufo);
-
-        auto settingWave = Mod::get()->getSettingValue<bool>("wave");
-        if (settingWave)
-            IconRandomizer::randomize(RandomizeType::Wave);
-
-        auto settingRobot = Mod::get()->getSettingValue<bool>("robot");
-        if (settingRobot)
-            IconRandomizer::randomize(RandomizeType::Robot);
-
-        auto settingSpider = Mod::get()->getSettingValue<bool>("spider");
-        if (settingSpider)
-            IconRandomizer::randomize(RandomizeType::Spider);
-
-        auto settingSwing = Mod::get()->getSettingValue<bool>("swing");
-        if (settingSwing)
-            IconRandomizer::randomize(RandomizeType::Swing);
-        
-        auto settingJetpack = Mod::get()->getSettingValue<bool>("jetpack");
-        if (settingJetpack)
-            IconRandomizer::randomize(RandomizeType::Jetpack);
-
-        auto settingDeathEffect = Mod::get()->getSettingValue<bool>("deathEffect");
-        if (settingDeathEffect)
-            IconRandomizer::randomize(RandomizeType::DeathEffect);
-
-        auto settingTrail = Mod::get()->getSettingValue<bool>("trail");
-        if (settingTrail)
-            IconRandomizer::randomize(RandomizeType::Trail);
-
-        auto settingShipFire = Mod::get()->getSettingValue<bool>("shipFire");
-        if (settingShipFire)
-            IconRandomizer::randomize(RandomizeType::ShipFire);
-
-        auto settingAnimation = Mod::get()->getSettingValue<bool>("animation");
-        if (settingAnimation)
-            IconRandomizer::randomize(RandomizeType::Animation);
-
-        auto settingExplode = Mod::get()->getSettingValue<bool>("explode");
-        if (settingExplode)
-            IconRandomizer::randomize(RandomizeType::Explode);
-
-        auto settingColor1 = Mod::get()->getSettingValue<bool>("color1");
-        if (settingColor1)
-            IconRandomizer::randomize(RandomizeType::Color1);
-
-        auto settingColor2 = Mod::get()->getSettingValue<bool>("color2");
-        if (settingColor2)
-            IconRandomizer::randomize(RandomizeType::Color2);
-
-        auto settingGlowColor = Mod::get()->getSettingValue<bool>("glowColor");
-        if (settingGlowColor)
-            IconRandomizer::randomize(RandomizeType::GlowColor);
-
-        auto settingGlow = Mod::get()->getSettingValue<bool>("glow");
-        if (settingGlow)
-            IconRandomizer::randomize(RandomizeType::Glow);
-
+        randomize(false);
 
         updateFrames(m_player1);
         updateFrames(m_player2);
@@ -143,50 +113,10 @@ class $modify(PlayLayer) {
         m_player1->updateGlowColor();
         m_player2->updateGlowColor();
 
-        // m_player1->addAllParticles();
-        // m_player2->addAllParticles();
-
         if (separateDualIconsLoaded)
         {
             IconRandomizer::init();
-            
-            if (settingCube)
-                IconRandomizer::randomize(RandomizeType::Cube, true);
-            if (settingShip)
-                IconRandomizer::randomize(RandomizeType::Ship, true);
-            if (settingBall)
-                IconRandomizer::randomize(RandomizeType::Ball, true);
-            if (settingUfo)
-                IconRandomizer::randomize(RandomizeType::Ufo, true);
-            if (settingWave)
-                IconRandomizer::randomize(RandomizeType::Wave, true);
-            if (settingRobot)
-                IconRandomizer::randomize(RandomizeType::Robot, true);
-            if (settingSpider)
-                IconRandomizer::randomize(RandomizeType::Spider, true);
-            if (settingSwing)
-                IconRandomizer::randomize(RandomizeType::Swing, true);
-            if (settingJetpack)
-                IconRandomizer::randomize(RandomizeType::Jetpack, true);
-            if (settingDeathEffect)
-                IconRandomizer::randomize(RandomizeType::DeathEffect, true);
-            if (settingTrail)
-                IconRandomizer::randomize(RandomizeType::Trail, true);
-            if (settingShipFire)
-                IconRandomizer::randomize(RandomizeType::ShipFire, true);
-            if (settingAnimation)
-                IconRandomizer::randomize(RandomizeType::Animation, true);
-            if (settingExplode)
-                IconRandomizer::randomize(RandomizeType::Explode, true);
-            if (settingColor1)
-                IconRandomizer::randomize(RandomizeType::Color1, true);
-            if (settingColor2)
-                IconRandomizer::randomize(RandomizeType::Color2, true);
-            if (settingGlowColor)
-                IconRandomizer::randomize(RandomizeType::GlowColor, true);
-            if (settingGlow)
-                IconRandomizer::randomize(RandomizeType::Glow, true);
-
+            randomize(true);
             color1 = gameManager->getPlayerColor();
             color2 = gameManager->getPlayerColor2();
             glowColor = gameManager->getPlayerGlowColor();
@@ -198,8 +128,26 @@ class $modify(PlayLayer) {
             else
                 m_player2->disableCustomGlowColor();
             m_player2->updateGlowColor();
-            // m_player2->addAllParticles();
         }
+        
+        if (effectManager)
+        {
+            if (auto action = effectManager->getColorAction(1005))
+            {
+                action->m_duration = 0;
+                action->m_fromColor = m_player1->m_playerColor1;
+                action->m_blending = true;
+            }
+
+            if (auto action = effectManager->getColorAction(1006))
+            {
+                action->m_duration = 0;
+                action->m_fromColor = m_player1->m_playerColor2;
+                action->m_blending = true;  
+            }
+        }
+
+        m_progressFill->setColor(m_player1->m_playerColor1);
 
         PlayLayer::resetLevel();
     }

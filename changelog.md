@@ -1,3 +1,6 @@
+# v1.4.0
+- Progress bar and objects set to match player color now update properly with the randomized player color
+
 # v1.3.1
 - Update to Geode v5.3.0 (Fixes a bug related to Spider 30)
 
