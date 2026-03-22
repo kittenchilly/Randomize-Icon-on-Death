@@ -80,7 +80,8 @@ class $modify(PlayLayer) {
 
     void resetLevel() {
         auto gameManager = GameManager::sharedState();
-        auto effectManager = PlayLayer::m_levelSettings->m_effectManager;
+        auto levelSettings = PlayLayer::m_levelSettings;
+        auto effectManager = levelSettings->m_effectManager;
         auto separateDualIconsLoaded = Loader::get()->getLoadedMod("weebify.separate_dual_icons");
 
         IconRandomizer::init();
@@ -129,24 +130,52 @@ class $modify(PlayLayer) {
                 m_player2->disableCustomGlowColor();
             m_player2->updateGlowColor();
         }
-        
+
         if (effectManager)
         {
-            if (auto action = effectManager->getColorAction(1005))
-            {
-                action->m_duration = 0;
-                action->m_fromColor = m_player1->m_playerColor1;
-                action->m_blending = true;
-            }
+            cocos2d::CCObject* obj;
+            auto colorActions = effectManager->getAllColorActions();
 
-            if (auto action = effectManager->getColorAction(1006))
-            {
-                action->m_duration = 0;
-                action->m_fromColor = m_player1->m_playerColor2;
-                action->m_blending = true;  
+            if (colorActions) {
+                cocos2d::CCObject* obj; 
+                for (auto obj : CCArrayExt(colorActions))
+                {
+                    auto action = static_cast<ColorAction*>(obj);
+
+                    if (action)
+                    {
+                        if (action->m_playerColor == 1)
+                        {
+                            action->m_fromColor = m_player1->m_playerColor1;
+                        }
+                        else if (action->m_playerColor == 2)
+                        {
+                            action->m_fromColor = m_player1->m_playerColor2;
+                        }
+                        
+                        // of course the specific player color actions don't actually use player color
+                        if (auto action = effectManager->getColorAction(1005))
+                        {
+                            action->m_duration = 0;
+                            action->m_fromColor = m_player1->m_playerColor1;
+                            action->m_blending = true;
+                        }
+
+                        if (auto action = effectManager->getColorAction(1006))
+                        {
+                            action->m_duration = 0;
+                            action->m_fromColor = m_player1->m_playerColor2;
+                            action->m_blending = true;
+                        }
+                    }
+                }
             }
         }
 
+        if (GJBaseGameLayer::m_endPortal)
+            GJBaseGameLayer::m_endPortal->updateColors(m_player1->m_playerColor1);
+        if (GJBaseGameLayer::m_glitterParticles)
+            GJBaseGameLayer::m_glitterParticles->setStartColor({ m_player1->m_playerColor1.r / 255.f, m_player1->m_playerColor1.g / 255.f, m_player1->m_playerColor1.b / 255.f, 1.f });
         m_progressFill->setColor(m_player1->m_playerColor1);
 
         PlayLayer::resetLevel();
