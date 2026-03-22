@@ -1,3 +1,6 @@
+# v1.4.1
+- Fixed some cases of objects set to player color not updating
+
 # v1.4.0
 - Progress bar and objects set to match player color now update properly with the randomized player color
 
