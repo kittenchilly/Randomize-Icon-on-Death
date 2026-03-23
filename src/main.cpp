@@ -88,9 +88,6 @@ class $modify(PlayLayer) {
 
         randomize(false);
 
-        updateFrames(m_player1);
-        updateFrames(m_player2);
-
         int color1 = gameManager->getPlayerColor();
         int color2 = gameManager->getPlayerColor2();
         int glowColor = gameManager->getPlayerGlowColor();
@@ -118,17 +115,6 @@ class $modify(PlayLayer) {
         {
             IconRandomizer::init();
             randomize(true);
-            color1 = gameManager->getPlayerColor();
-            color2 = gameManager->getPlayerColor2();
-            glowColor = gameManager->getPlayerGlowColor();
-            updateFrames(m_player2);
-            m_player2->setColor(gameManager->colorForIdx(color1));
-            m_player2->setSecondColor(gameManager->colorForIdx(color2));
-            if (gameManager->getPlayerGlow())
-                m_player2->enableCustomGlowColor(gameManager->colorForIdx(glowColor));
-            else
-                m_player2->disableCustomGlowColor();
-            m_player2->updateGlowColor();
         }
 
         if (effectManager)
@@ -179,5 +165,9 @@ class $modify(PlayLayer) {
         m_progressFill->setColor(m_player1->m_playerColor1);
 
         PlayLayer::resetLevel();
+
+        // frames have to be updated after resetLevel because the gamemode is only switched back to the starting one in it
+        updateFrames(m_player1);
+        updateFrames(m_player2);
     }
 };

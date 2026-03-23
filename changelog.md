@@ -1,3 +1,7 @@
+# v1.4.2
+- Fixed repeat icons appearing more often than they should
+- Optimized Separate Dual Icons support
+
 # v1.4.1
 - Fixed some cases of objects set to player color not updating
 
