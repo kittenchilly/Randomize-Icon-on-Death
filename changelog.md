@@ -1,3 +1,6 @@
+# v1.4.3
+- Fixed cases of the trail, shipfire, and glow toggle not randomizing properly
+
 # v1.4.2
 - Fixed repeat icons appearing more often than they should
 - Optimized Separate Dual Icons support
