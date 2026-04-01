@@ -1,3 +1,6 @@
+# v1.4.4
+- Globed support
+
 # v1.4.3
 - Fixed cases of the trail, shipfire, and glow toggle not randomizing properly
 

@@ -1,6 +1,7 @@
 #include <hiimjustin000.icon_randomizer_api/include/IconRandomizer.hpp>
 #include <Geode/modify/PlayLayer.hpp>
 #include <Geode/modify/PlayerObject.hpp>
+#include <dankmeme.globed2/include/globed/soft-link/API.hpp>
 
 using namespace geode::prelude;
 
@@ -231,11 +232,21 @@ class $modify(PlayLayer) {
         auto gameManager = GameManager::sharedState();
         auto levelSettings = PlayLayer::m_levelSettings;
         auto effectManager = levelSettings->m_effectManager;
-        auto separateDualIconsLoaded = Loader::get()->getLoadedMod("weebify.separate_dual_icons");
 
         IconRandomizer::init();
 
         randomize(false);
+
+        if (Loader::get()->getLoadedMod("weebify.separate_dual_icons"))
+        {
+            IconRandomizer::init();
+            randomize(true);
+        }
+
+        if (globed::api::available())
+        {
+            globed::api::net::invalidateIcons();
+        }
 
         int color1 = gameManager->getPlayerColor();
         int color2 = gameManager->getPlayerColor2();
@@ -266,12 +277,6 @@ class $modify(PlayLayer) {
         normalStreak(m_player2);
         shipFire(m_player1);
         shipFire(m_player2);
-
-        if (separateDualIconsLoaded)
-        {
-            IconRandomizer::init();
-            randomize(true);
-        }
 
         if (effectManager)
         {
