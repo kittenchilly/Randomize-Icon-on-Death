@@ -246,6 +246,7 @@ class $modify(PlayLayer) {
         if (globed::api::available())
         {
             globed::api::net::invalidateIcons();
+            globed::api::game::updateLocalIcons();
         }
 
         int color1 = gameManager->getPlayerColor();

@@ -1,3 +1,6 @@
+# v1.4.5
+- Fixed Globed issue where icon in progress bar didn't properly update
+
 # v1.4.4
 - Globed support
 
